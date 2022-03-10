@@ -5,9 +5,9 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad,unpad
 from Crypto.Random import get_random_bytes
 
-plaintext = 'I have a Samsung SD card'
-key = 'WHAAAAAAAAAAAAAT' #Must be 16 char for AES128
-iv =  get_random_bytes(16) #Must be 16 char for AES128
+# plaintext = 'I have a Samsung SD card'
+# key = 'WHAAAAAAAAAAAAAT' #Must be 16 char
+iv =  get_random_bytes(16) #Must be 16 char
 print(f'Your initialization vector is :{iv}')
 
 def WrongInput():
@@ -41,20 +41,20 @@ def CFBdecrypt(enc,key,iv):
     cipher = AES.new(key.encode(), AES.MODE_CFB, iv)
     return cipher.decrypt(enc)
 
-encryptedECB = ECBencrypt(plaintext)
-print('encrypted with ECB:',encryptedECB.decode())
-decryptedECB = ECBdecrypt(encryptedECB)
-print('decrypted with ECB:',decryptedECB.decode())
+# encryptedECB = ECBencrypt(plaintext)
+# print('encrypted with ECB:',encryptedECB.decode())
+# decryptedECB = ECBdecrypt(encryptedECB)
+# print('decrypted with ECB:',decryptedECB.decode())
 
-encryptedCBC = CBCencrypt(plaintext,key,iv)
-print('encrypted with CBC:',encryptedCBC.decode())
-decryptedCBC = CBCdecrypt(encryptedCBC,key,iv)
-print('decrypted with CBC:', decryptedCBC.decode())
+# encryptedCBC = CBCencrypt(plaintext,key,iv)
+# print('encrypted with CBC:',encryptedCBC.decode())
+# decryptedCBC = CBCdecrypt(encryptedCBC,key,iv)
+# print('decrypted with CBC:', decryptedCBC.decode())
 
-encryptedCFB = CFBencrypt(plaintext,key,iv)
-print('encrypted with CFB:',encryptedCFB.decode())
-decryptedCFB = CFBdecrypt(encryptedCFB,key,iv)
-print('decrypted with CFB:', decryptedCFB.decode())
+# encryptedCFB = CFBencrypt(plaintext,key,iv)
+# print('encrypted with CFB:',encryptedCFB.decode())
+# decryptedCFB = CFBdecrypt(encryptedCFB,key,iv)
+# print('decrypted with CFB:', decryptedCFB.decode())
 
 
 getinfo = int(input('1) Enter your own plaintext and key\n2) Get plaintext and key from file\n'))
@@ -80,7 +80,7 @@ if(getinfo == 1):
     elif(choise == 4):
         cyphertext = input("Enter your plaintext:")
         key = str(input("Enter your plaintext:"))
-        decryptedCBC = CBCdecrypt(encryptedCBC,key,iv)
+        decryptedCBC = CBCdecrypt(cyphertext,key,iv)
         print('decrypted with CBC:', decryptedCBC.decode())
     elif(choise == 5):
         plaintext = str(input("Enter your plaintext:"))
@@ -90,7 +90,7 @@ if(getinfo == 1):
     elif(choise == 6):
         cyphertext = input("Enter your plaintext:")
         key = str(input("Enter your plaintext:"))
-        decryptedCFB = CFBdecrypt(encryptedCFB,key,iv)
+        decryptedCFB = CFBdecrypt(cyphertext,key,iv)
         print('decrypted with CFB:', decryptedCFB.decode())
     else:
         print("Wrong input")
